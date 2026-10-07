@@ -138,6 +138,10 @@ code, kbd { font-family: var(--display); font-size: .88em; background: var(--cod
 .kopyala:hover { border-color: var(--accent); color: var(--accent); }
 .not { font-size: 14px; color: var(--muted); }
 
+/* Görüşler */
+.gorus-kutu { max-width: 820px; border-top: 1px solid var(--line); padding-top: 28px; min-height: 240px; }
+.gorus-not { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+
 /* Kurulum adımları */
 .adimlar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
 ol.liste { margin: 0; padding: 0; list-style: none; counter-reset: a; display: grid; gap: 0; }
@@ -197,6 +201,7 @@ footer p { font-size: 14px; color: #a7a1cc; max-width: 52ch; }
       <a href="#ozellikler">Özellikler</a>
       <a href="#ekranlar">Ekranlar</a>
       <a href="#indir">İndir</a>
+      <a href="#gorusler">Görüşler</a>
       <a href="#kurulum">Kurulum</a>
       <a href="#sss">SSS</a>
     </nav>
@@ -318,6 +323,36 @@ footer p { font-size: 14px; color: #a7a1cc; max-width: 52ch; }
           <a class="dugme" href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Windows için indir <small>ZIP · 530 KB</small></a>
           <p class="not">Zip'i aç ve <code>Eclipse.exe</code>'yi çalıştır. Linux sürümü Aether'in içinde hazır gelir.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gorusler">
+    <div class="wrap">
+      <div class="bolum-bas">
+        <div class="etiket">Görüşler</div>
+        <h2>Aether'i denedin mi?</h2>
+        <p>Neyi beğendiğini, neyin çalışmadığını ve ne eklenmesini istediğini yaz. Yorum yazmak için bir GitHub hesabıyla giriş yapman gerekiyor.</p>
+      </div>
+      <div class="gorus-kutu">
+        <p class="gorus-not">Tüm konuşmalar <a href="https://github.com/1260120047-eng/aether/discussions">GitHub Discussions</a> sayfasında da görünür.</p>
+        <script src="https://giscus.app/client.js"
+                data-repo="1260120047-eng/aether"
+                data-repo-id="R_kgDOU_pYoA"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOU_pYoM4DHRGf"
+                data-mapping="specific"
+                data-term="aether-1.0"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="top"
+                data-theme="preferred_color_scheme"
+                data-lang="tr"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
       </div>
     </div>
   </section>
