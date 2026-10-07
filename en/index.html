@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether Linux</title>
+<meta name="description" content="Aether: a small Linux distribution based on Alpine, in Turkish and English. A hobby project by Hot Zot.">
+<link rel="alternate" hreflang="tr" href="https://aether-os.dev/">
+<link rel="alternate" hreflang="en" href="https://aether-os.dev/en/">
+<link rel="icon" href="../img/aether.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+:root {
+  --bg: #fdfcf9;
+  --fg: #222;
+  --soluk: #6b6b6b;
+  --cizgi: #dcdad3;
+  --link: #4b3cc4;
+  --ziyaret: #7a3cab;
+  --kod: #f0eee8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15141a; --fg: #ddd; --soluk: #8f8d99; --cizgi: #34323d;
+    --link: #a99cff; --ziyaret: #c59cf0; --kod: #22212a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15141a; --fg: #ddd; --soluk: #8f8d99; --cizgi: #34323d;
+  --link: #a99cff; --ziyaret: #c59cf0; --kod: #22212a; color-scheme: dark;
+}
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 14.5px/1.7 "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+.sayfa { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:visited { color: var(--ziyaret); }
+h1, h2 { font-weight: 700; line-height: 1.3; }
+h1 { font-size: 15px; margin: 0; letter-spacing: .3em; }
+h2 { font-size: 14.5px; margin: 48px 0 12px; }
+h2::before { content: "## "; color: var(--soluk); font-weight: 400; }
+p, ul, ol { margin: 0 0 14px; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 4px; }
+code { background: var(--kod); padding: 1px 4px; font-size: 13.5px; }
+img { max-width: 100%; height: auto; display: block; }
+.soluk { color: var(--soluk); }
+small { font-size: 12.5px; }
+
+.ust { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.ust img { width: 30px; height: 30px; }
+.menu { margin: 0 0 32px; color: var(--soluk); font-size: 13.5px; }
+.menu a, .menu a:visited { color: var(--soluk); }
+
+figure { margin: 22px 0; }
+figure img { border: 1px solid var(--cizgi); }
+figcaption { color: var(--soluk); font-size: 12.5px; margin-top: 6px; }
+
+.resimler { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.resimler figure { margin: 0; }
+
+.tablo { overflow-x: auto; margin: 14px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+th { font-weight: 400; color: var(--soluk); }
+td.boy { white-space: nowrap; }
+.ozet { font-size: 11.5px; color: var(--soluk); word-break: break-all; display: block; margin-top: 2px; }
+
+pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 13px; margin: 0 0 14px; }
+
+.gunluk dt { font-weight: 700; }
+.gunluk dd { margin: 0 0 12px 0; }
+
+#yorumlar { margin-top: 14px; min-height: 200px; }
+.alt { margin-top: 56px; padding-top: 16px; border-top: 1px dashed var(--cizgi); color: var(--soluk); font-size: 12.5px; }
+
+@media (max-width: 560px) {
+  body { font-size: 14px; }
+  .resimler { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="sayfa">
+
+<div class="ust">
+  <img src="../img/aether.svg" alt="">
+  <h1>AETHER</h1>
+</div>
+<p class="menu">
+  <a href="#download">download</a> ·
+  <a href="#install">install</a> ·
+  <a href="#issues">known issues</a> ·
+  <a href="#comments">comments</a> ·
+  <a href="https://github.com/1260120047-eng/aether-os">source code</a> ·
+  <a href="../" hreflang="tr" lang="tr">türkçe</a>
+</p>
+
+<p>Hi, I'm Hot Zot. Aether is a small Linux distribution I made purely out of curiosity. I wanted to see what goes on inside an operating system; then it grew into something with its own installer, its own settings app and even its own web browser.</p>
+
+<p>It's built on Alpine Linux and the ISO is around 370 MB. It loads into RAM at boot, and if you like it you can install it to disk. The interface is in Turkish and English (pick English in the boot menu).</p>
+
+<figure>
+  <a href="../img/masaustu.webp"><img src="../img/masaustu.webp" width="1280" height="800" alt="Aether desktop"></a>
+  <figcaption>The desktop. Right-click or press Super for the menu.</figcaption>
+</figure>
+
+<h2 id="download">Download</h2>
+
+<p>Current version: <b>1.0 "Nebula"</b> (7 October 2026).</p>
+
+<div class="tablo">
+<table>
+  <tr><th>file</th><th>size</th><th>what</th></tr>
+  <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">aether-1.0-nebula.iso</a>
+      <span class="ozet">sha256: 4c39291651189f02c48a4a20749b7d972dfbc11af0663dd5f7e9ad2f8766d0f1</span></td>
+    <td class="boy">370 MB</td>
+    <td>the operating system, x86_64, BIOS + UEFI</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
+      <span class="ozet">sha256: 479babda80bb3ee3a78c6a268397ae9f922be8d7fdd01809bcf366013b6f86fd</span></td>
+    <td class="boy">530 KB</td>
+    <td>the Eclipse browser for Windows 10/11</td>
+  </tr>
+</table>
+</div>
+
+<p>To check that the download isn't corrupted:</p>
+<pre>sha256sum aether-1.0-nebula.iso                    # Linux
+certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
+
+<p>Aether is open source. All the code is at <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> under the GPL-3.0 license, along with instructions for building it.</p>
+
+<p class="soluk"><small>All files are on the <a href="https://github.com/1260120047-eng/aether/releases">GitHub releases</a> page.</small></p>
+
+<h2>What's inside</h2>
+
+<ul>
+  <li>Linux 6.12 LTS kernel on an Alpine 3.22 base</li>
+  <li>Openbox desktop with light and dark themes (switch instantly in Settings)</li>
+  <li>An installer I wrote myself: language, keyboard, user, disk</li>
+  <li>Eclipse: my own WebKit-based browser, with tabs, bookmarks, history and private windows</li>
+  <li>Terminal, file manager, text editor, image viewer, calculator</li>
+  <li>Minesweeper, a starfield screensaver, a lock screen</li>
+  <li><code>gcc</code>, <code>g++</code> and <code>make</code> come preinstalled; SDL2/OpenGL development packages can be added from Settings</li>
+  <li><code>aether-info</code> and <code>aether-guncelle</code> (update) in the terminal</li>
+</ul>
+
+<p>The music player, system sounds and window animations are optional add-ons, so they don't bloat the ISO.</p>
+
+<div class="resimler">
+  <figure>
+    <a href="../img/eclipse.webp"><img src="../img/eclipse.webp" width="1102" height="750" alt="Eclipse browser" loading="lazy"></a>
+    <figcaption>Eclipse's home page</figcaption>
+  </figure>
+  <figure>
+    <a href="../img/kurulum.webp"><img src="../img/kurulum.webp" width="1280" height="800" alt="Installer" loading="lazy"></a>
+    <figcaption>The installer, account step</figcaption>
+  </figure>
+  <figure>
+    <a href="../img/koyu-tema.webp"><img src="../img/koyu-tema.webp" width="1280" height="800" alt="Dark theme" loading="lazy"></a>
+    <figcaption>Dark theme and Settings</figcaption>
+  </figure>
+  <figure>
+    <a href="../img/grub.webp"><img src="../img/grub.webp" width="800" height="600" alt="Boot menu" loading="lazy"></a>
+    <figcaption>Boot menu</figcaption>
+  </figure>
+</div>
+<p class="soluk"><small>The screenshots show the Turkish interface.</small></p>
+
+<h2 id="install">Installing</h2>
+
+<p>I've tested it in VirtualBox and QEMU, where it works fine. I haven't tried it on a real computer yet (see below).</p>
+
+<ol>
+  <li>Create a new VirtualBox machine. Type: Linux, version: Other Linux (64-bit).</li>
+  <li>Give it at least 2 GB of RAM and a 10 GB disk.</li>
+  <li>In Settings → Storage, attach the ISO to the CD drive and start the machine.</li>
+  <li>In the boot menu, choose <b>English</b>. It logs into a live session with no password. Try it as long as you like, then click <b>Install to Disk</b> in the welcome window (or <b>Install Aether</b> in the menu).</li>
+  <li>When the install finishes, remove the ISO, restart and log in with your own account.</li>
+</ol>
+
+<p>While the system is being copied into RAM at boot, the screen may sit still for about a minute. That's normal.</p>
+
+<h2 id="issues">Known issues</h2>
+
+<ul>
+  <li>Not tested on real hardware. Wi-Fi, sound and some graphics cards may not work. If you try it, I'd love to hear how it went.</li>
+  <li>If the screen stays black, choose <b>Safe graphics</b> in the boot menu, or turn off 3D acceleration in VirtualBox.</li>
+  <li>If VirtualBox shows a turtle icon at the bottom, Hyper-V is enabled on Windows and everything will be very slow.</li>
+  <li>64-bit only.</li>
+</ul>
+
+<h2>Release notes</h2>
+
+<dl class="gunluk">
+  <dt>1.0 "Nebula" <span class="soluk">· 7 October 2026</span></dt>
+  <dd>First release. NetSurf was removed and replaced with Eclipse. Fixed the black screen in VirtualBox.</dd>
+</dl>
+
+<h2>What's next</h2>
+
+<p>I want to bring my own game engine's map editor to Aether. That will most likely be in the next version.</p>
+
+<h2 id="comments">Comments</h2>
+
+<p>If you've tried it, tell me what you think: what you liked, what's broken, what you'd like added. You need a GitHub account to comment. Comments also appear on the <a href="https://github.com/1260120047-eng/aether/discussions">Discussions</a> page, and you're welcome to write in English.</p>
+
+<div id="yorumlar">
+<script src="https://giscus.app/client.js"
+        data-repo="1260120047-eng/aether"
+        data-repo-id="R_kgDOU_pYoA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOU_pYoM4DHRGf"
+        data-mapping="specific"
+        data-term="aether-1.0"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+
+<div class="alt">
+  Aether is made by Hot Zot and is <a href="https://github.com/1260120047-eng/aether-os">open source</a> (GPL-3.0). Thanks to everyone who makes Alpine, Linux, Openbox, GTK, WebKit and Mesa.<br>
+  Last updated: 7 October 2026
+</div>
+
+</div>
+</body>
+</html>
