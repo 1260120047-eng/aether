@@ -2,426 +2,235 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aether 1.0 Nebula</title>
-<meta name="description" content="Aether: Alpine Linux tabanlı, hafif ve Türkçe bir işletim sistemi. ISO'yu ve Eclipse tarayıcıyı indir.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether Linux</title>
+<meta name="description" content="Aether: Alpine tabanlı, küçük, Türkçe bir Linux dağıtımı. Hot Zot'un hobi projesi.">
 <link rel="icon" href="img/aether.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
-/* Düzen: tek sütunlu, sola hizalı okuma akışı; ekran görüntüleri pencere çerçevesinde; indirmeler iki kart */
 :root {
-  --bg: #fbfbfd;
-  --panel: #f2f1f8;
-  --fg: #1c1a2b;
-  --muted: #64617a;
-  --line: #e2e0ec;
-  --accent: #5b4bd6;
-  --accent-hover: #4a3bc0;
-  --on-accent: #ffffff;
-  --code: #ecebf6;
-  --sky: #0a0c22;
-  --display: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
-  --body: "IBM Plex Sans", system-ui, "Segoe UI", Roboto, sans-serif;
-  --wrap: 1080px;
+  --bg: #fdfcf9;
+  --fg: #222;
+  --soluk: #6b6b6b;
+  --cizgi: #dcdad3;
+  --link: #4b3cc4;
+  --ziyaret: #7a3cab;
+  --kod: #f0eee8;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d0c16; --panel: #16141f; --fg: #ebe9f5; --muted: #a29eb9; --line: #272439;
-    --accent: #8f80f2; --accent-hover: #a597ff; --on-accent: #0d0c16; --code: #1d1a2b; --sky: #06071a;
-    color-scheme: dark;
+    --bg: #15141a; --fg: #ddd; --soluk: #8f8d99; --cizgi: #34323d;
+    --link: #a99cff; --ziyaret: #c59cf0; --kod: #22212a; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d0c16; --panel: #16141f; --fg: #ebe9f5; --muted: #a29eb9; --line: #272439;
-  --accent: #8f80f2; --accent-hover: #a597ff; --on-accent: #0d0c16; --code: #1d1a2b; --sky: #06071a;
-  color-scheme: dark;
+  --bg: #15141a; --fg: #ddd; --soluk: #8f8d99; --cizgi: #34323d;
+  --link: #a99cff; --ziyaret: #c59cf0; --kod: #22212a; color-scheme: dark;
 }
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--fg);
-  font: 400 16px/1.6 var(--body);
-  -webkit-font-smoothing: antialiased;
+  font: 14.5px/1.7 "JetBrains Mono", ui-monospace, Consolas, monospace;
 }
-img { max-width: 100%; display: block; }
-a { color: var(--accent); }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-h1, h2, h3 { text-wrap: balance; margin: 0; }
-p { margin: 0; }
-.wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: 20px; }
-.mono { font-family: var(--display); }
-.etiket { font: 500 12px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.sayfa { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+a { color: var(--link); text-underline-offset: 2px; }
+a:visited { color: var(--ziyaret); }
+h1, h2 { font-weight: 700; line-height: 1.3; }
+h1 { font-size: 15px; margin: 0; letter-spacing: .3em; }
+h2 { font-size: 14.5px; margin: 48px 0 12px; }
+h2::before { content: "## "; color: var(--soluk); font-weight: 400; }
+p, ul, ol { margin: 0 0 14px; }
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 4px; }
+code { background: var(--kod); padding: 1px 4px; font-size: 13.5px; }
+img { max-width: 100%; height: auto; display: block; }
+.soluk { color: var(--soluk); }
+small { font-size: 12.5px; }
 
-/* Üst menü */
-header {
-  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
-}
-header .wrap { display: flex; align-items: center; gap: 24px; min-height: 60px; flex-wrap: wrap; }
-.marka { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--fg); }
-.marka img { width: 28px; height: 28px; }
-.marka span { font: 400 15px/1 var(--display); letter-spacing: .42em; }
-nav { display: flex; gap: 20px; margin-left: auto; flex-wrap: wrap; }
-nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
-nav a:hover { color: var(--fg); }
+.ust { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.ust img { width: 30px; height: 30px; }
+.menu { margin: 0 0 32px; color: var(--soluk); font-size: 13.5px; }
+.menu a, .menu a:visited { color: var(--soluk); }
 
-/* Giriş */
-.giris { padding-block: 72px 56px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
-.giris h1 { font: 300 clamp(34px, 5vw, 52px)/1.1 var(--display); letter-spacing: -.01em; margin-block: 14px 18px; }
-.giris p.ozet { color: var(--muted); font-size: 18px; max-width: 34ch; }
-.dugmeler { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
-.dugme {
-  display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px;
-  border: 1px solid var(--accent); background: var(--accent); color: var(--on-accent);
-  font: 500 15px/1.2 var(--body); text-decoration: none; cursor: pointer;
-}
-.dugme:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-.dugme small { font: 400 12px/1 var(--display); opacity: .8; }
-.dugme.ikincil { background: transparent; color: var(--fg); border-color: var(--line); }
-.dugme.ikincil:hover { border-color: var(--accent); color: var(--accent); }
+figure { margin: 22px 0; }
+figure img { border: 1px solid var(--cizgi); }
+figcaption { color: var(--soluk); font-size: 12.5px; margin-top: 6px; }
 
-/* Pencere çerçevesi */
-.pencere { border: 1px solid var(--line); background: var(--panel); box-shadow: 0 18px 50px -24px rgba(30, 20, 90, .45); }
-.pencere .cubuk { display: flex; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
-.pencere .cubuk i { width: 9px; height: 9px; border: 1px solid var(--muted); opacity: .6; }
-.pencere img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.resimler { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 18px 0; }
+.resimler figure { margin: 0; }
 
-/* Teknik şerit */
-.serit { border-block: 1px solid var(--line); background: var(--panel); }
-.serit dl { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); margin: 0; }
-.serit div { padding: 18px 16px; border-left: 1px solid var(--line); }
-.serit div:first-child { border-left: 0; padding-left: 0; }
-.serit dt { font: 500 11px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
-.serit dd { margin: 8px 0 0; font: 400 15px/1.3 var(--display); font-variant-numeric: tabular-nums; }
+.tablo { overflow-x: auto; margin: 14px 0; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--cizgi); vertical-align: top; }
+th { font-weight: 400; color: var(--soluk); }
+td.boy { white-space: nowrap; }
+.ozet { font-size: 11.5px; color: var(--soluk); word-break: break-all; display: block; margin-top: 2px; }
 
-section { padding-block: 80px; }
-.bolum-bas { display: grid; gap: 10px; margin-bottom: 36px; max-width: 62ch; }
-.bolum-bas h2 { font: 300 32px/1.2 var(--display); }
-.bolum-bas p { color: var(--muted); }
+pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 13px; margin: 0 0 14px; }
 
-/* Özellikler */
-.ozellikler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
-.ozellik { padding: 26px 24px 28px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
-.ozellik:not(:nth-child(3n+1)) { padding-left: 24px; border-left: 1px solid var(--line); }
-.ozellik h3 { font: 500 16px/1.3 var(--body); }
-.ozellik p { color: var(--muted); font-size: 15px; }
-code, kbd { font-family: var(--display); font-size: .88em; background: var(--code); padding: 1px 6px; }
+.gunluk dt { font-weight: 700; }
+.gunluk dd { margin: 0 0 12px 0; }
 
-/* Galeri */
-.galeri { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.galeri figure { margin: 0; display: grid; gap: 10px; }
-.galeri figure.genis { grid-column: span 2; }
-.galeri img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border: 1px solid var(--line); }
-.galeri figure.genis img { aspect-ratio: auto; }
-.galeri figcaption { font-size: 14px; color: var(--muted); }
-.galeri figcaption b { color: var(--fg); font-weight: 500; }
+#yorumlar { margin-top: 14px; min-height: 200px; }
+.alt { margin-top: 56px; padding-top: 16px; border-top: 1px dashed var(--cizgi); color: var(--soluk); font-size: 12.5px; }
 
-/* İndir */
-#indir { background: var(--panel); border-block: 1px solid var(--line); }
-.kartlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
-.kart { background: var(--bg); border: 1px solid var(--line); padding: 28px; display: grid; gap: 18px; align-content: start; min-width: 0; }
-.kart-bas { display: flex; gap: 14px; align-items: center; }
-.kart-bas img { width: 48px; height: 48px; }
-.kart-bas h3 { font: 400 22px/1.2 var(--display); }
-.kart-bas p { color: var(--muted); font-size: 14px; }
-.kart dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 18px; font-size: 14px; }
-.kart dt { color: var(--muted); }
-.kart dd { margin: 0; font-variant-numeric: tabular-nums; min-width: 0; }
-.ozet-satiri { display: flex; gap: 8px; align-items: center; min-width: 0; }
-.ozet-satiri code { overflow-wrap: anywhere; font-size: 12px; line-height: 1.5; padding: 6px 8px; flex: 1; min-width: 0; }
-.kopyala { border: 1px solid var(--line); background: transparent; color: var(--fg); font: 500 12px/1 var(--body); padding: 8px 10px; cursor: pointer; white-space: nowrap; }
-.kopyala:hover { border-color: var(--accent); color: var(--accent); }
-.not { font-size: 14px; color: var(--muted); }
-
-/* Görüşler */
-.gorus-kutu { max-width: 820px; border-top: 1px solid var(--line); padding-top: 28px; min-height: 240px; }
-.gorus-not { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
-
-/* Kurulum adımları */
-.adimlar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
-ol.liste { margin: 0; padding: 0; list-style: none; counter-reset: a; display: grid; gap: 0; }
-ol.liste li { counter-increment: a; display: grid; grid-template-columns: 40px minmax(0, 1fr); padding: 16px 0; border-bottom: 1px solid var(--line); }
-ol.liste li::before { content: counter(a, decimal-leading-zero); font: 400 14px/1.6 var(--display); color: var(--accent); }
-ol.liste b { font-weight: 500; }
-.uyari { border: 1px solid var(--line); padding: 22px 24px; display: grid; gap: 10px; background: var(--panel); }
-.uyari h3 { font: 500 16px/1.3 var(--body); }
-.uyari p, .uyari li { color: var(--muted); font-size: 15px; }
-.uyari ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
-
-/* SSS */
-.sss { display: grid; gap: 0; border-top: 1px solid var(--line); max-width: 760px; }
-details { border-bottom: 1px solid var(--line); padding: 16px 0; }
-summary { cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
-summary::-webkit-details-marker { display: none; }
-summary::after { content: "+"; font-family: var(--display); color: var(--muted); }
-details[open] summary::after { content: "−"; }
-details p { color: var(--muted); margin-top: 10px; max-width: 65ch; }
-
-/* Alt */
-footer { background: var(--sky); color: #d9d5f2; padding-block: 48px; }
-footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: end; }
-footer .marka { color: #fff; }
-footer p { font-size: 14px; color: #a7a1cc; max-width: 52ch; }
-
-@media (max-width: 900px) {
-  .giris { grid-template-columns: minmax(0, 1fr); padding-block: 48px 40px; gap: 36px; }
-  .serit dl { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .serit div:nth-child(4) { border-left: 0; padding-left: 0; }
-  .serit div:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .ozellikler { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .ozellik:not(:nth-child(3n+1)) { padding-left: 0; border-left: 0; }
-  .ozellik:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--line); }
-  .galeri { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .kartlar, .adimlar { grid-template-columns: minmax(0, 1fr); }
-  section { padding-block: 56px; }
-}
 @media (max-width: 560px) {
-  nav { display: none; }
-  .serit dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .serit div { border-left: 0 !important; padding-left: 0 !important; border-top: 1px solid var(--line); }
-  .serit div:nth-child(-n+2) { border-top: 0; }
-  .ozellikler, .galeri { grid-template-columns: minmax(0, 1fr); }
-  .ozellik:nth-child(2n) { padding-left: 0; border-left: 0; }
-  .galeri figure.genis { grid-column: auto; }
-  .kart { padding: 22px 18px; }
+  body { font-size: 14px; }
+  .resimler { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
+<div class="sayfa">
 
-<header>
-  <div class="wrap">
-    <a class="marka" href="#"><img src="img/aether.svg" alt=""><span>AETHER</span></a>
-    <nav aria-label="Bölümler">
-      <a href="#ozellikler">Özellikler</a>
-      <a href="#ekranlar">Ekranlar</a>
-      <a href="#indir">İndir</a>
-      <a href="#gorusler">Görüşler</a>
-      <a href="#kurulum">Kurulum</a>
-      <a href="#sss">SSS</a>
-    </nav>
-  </div>
-</header>
+<div class="ust">
+  <img src="img/aether.svg" alt="">
+  <h1>AETHER</h1>
+</div>
+<p class="menu">
+  <a href="#indir">indir</a> ·
+  <a href="#kurulum">kurulum</a> ·
+  <a href="#sorunlar">bilinen sorunlar</a> ·
+  <a href="#yorum">yorumlar</a> ·
+  <a href="https://github.com/1260120047-eng/aether">github</a>
+</p>
 
-<main>
-  <div class="wrap giris">
-    <div>
-      <div class="etiket">Sürüm 1.0 · Nebula · Ekim 2026</div>
-      <h1>Küçük, hızlı ve Türkçe bir Linux.</h1>
-      <p class="ozet">Aether, Alpine Linux üzerine kurulu, 370 MB'lık bir işletim sistemi. Önce RAM'den dene, beğenirsen birkaç tıkla diske kur.</p>
-      <div class="dugmeler">
-        <a class="dugme" href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">Aether'i indir <small>ISO · 370 MB</small></a>
-        <a class="dugme ikincil" href="#eclipse">Eclipse tarayıcı</a>
-      </div>
-    </div>
-    <div class="pencere">
-      <div class="cubuk" aria-hidden="true"><i></i><i></i><i></i></div>
-      <img src="img/masaustu.webp" width="1280" height="800" alt="Aether masaüstü: yıldızlı duvar kağıdı, karşılama penceresi ve sağ tık menüsü">
-    </div>
-  </div>
+<p>Merhaba, ben Hot Zot. Aether, tamamen merak ettiğim için yaptığım küçük bir Linux dağıtımı. Bir işletim sisteminin içinde neler döndüğünü görmek istedim; sonra iş büyüdü ve kendi kurulum programı, ayarları, hatta kendi tarayıcısı olan bir şeye dönüştü.</p>
 
-  <div class="serit">
-    <div class="wrap">
-      <dl>
-        <div><dt>ISO</dt><dd>370 MB</dd></div>
-        <div><dt>Çekirdek</dt><dd>Linux 6.12 LTS</dd></div>
-        <div><dt>Taban</dt><dd>Alpine 3.22</dd></div>
-        <div><dt>Masaüstü</dt><dd>Openbox</dd></div>
-        <div><dt>Mimari</dt><dd>x86_64</dd></div>
-        <div><dt>Açılış</dt><dd>BIOS + UEFI</dd></div>
-      </dl>
-    </div>
-  </div>
+<p>Alpine Linux üzerine kurulu, ISO dosyası 370 MB civarında. Açılışta RAM'e yükleniyor, beğenirsen diske kurabiliyorsun. Arayüz Türkçe (İngilizce de var).</p>
 
-  <section id="ozellikler">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">Özellikler</div>
-        <h2>Gereken her şey var, fazlası yok.</h2>
-        <p>Aether'in uygulamalarının çoğu ona özel yazıldı. Ağır parçalar isteğe bağlı eklentiler olarak duruyor.</p>
-      </div>
-      <div class="ozellikler">
-        <div class="ozellik"><h3>Kurulum sihirbazı</h3><p>Dil, klavye, hesap ve disk seçimi. Kurulum bir sanal makinede birkaç dakika sürer.</p></div>
-        <div class="ozellik"><h3>Eclipse tarayıcı</h3><p>Sekmeler, yer imleri, geçmiş ve gizli pencere. JavaScript destekli WebKit motoru.</p></div>
-        <div class="ozellik"><h3>Açık ve koyu tema</h3><p>Keskin köşeli, sade bir tasarım. Tema, Ayarlar'dan değiştirince anında uygulanır.</p></div>
-        <div class="ozellik"><h3>Türkçe ve İngilizce</h3><p>Türkçe Q, Türkçe F ve ABD klavyesi. Dil açılış menüsünden ya da Ayarlar'dan seçilir.</p></div>
-        <div class="ozellik"><h3>Geliştiriciler için</h3><p><code>gcc</code>, <code>g++</code> ve <code>make</code> hazır gelir. SDL2 ve OpenGL başlıkları tek tıkla kurulur.</p></div>
-        <div class="ozellik"><h3>Küçük ayrıntılar</h3><p>Mayın Tarlası, yıldız alanı ekran koruyucusu, kilit ekranı ve terminalde <code>aether-info</code>.</p></div>
-      </div>
-    </div>
-  </section>
+<figure>
+  <a href="img/masaustu.webp"><img src="img/masaustu.webp" width="1280" height="800" alt="Aether masaüstü"></a>
+  <figcaption>Masaüstü. Menü için sağ tık ya da Super tuşu.</figcaption>
+</figure>
 
-  <section id="ekranlar" style="padding-top:0">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">Ekranlar</div>
-        <h2>Gerçek ekran görüntüleri.</h2>
-        <p>Hepsi bir sanal makinede çalışan Aether 1.0'dan alındı.</p>
-      </div>
-      <div class="galeri">
-        <figure class="genis"><img src="img/eclipse.webp" width="1102" height="750" alt="Eclipse tarayıcının ana sayfası" loading="lazy"><figcaption><b>Eclipse.</b> Saat, arama ve hızlı erişim kutucuklarıyla ana sayfa.</figcaption></figure>
-        <figure><img src="img/acilis.webp" width="1280" height="800" alt="Aether açılış ekranı" loading="lazy"><figcaption><b>Açılış.</b> Yıldızlı Aether açılış ekranı.</figcaption></figure>
-        <figure><img src="img/grub.webp" width="800" height="600" alt="Aether önyükleme menüsü" loading="lazy"><figcaption><b>Önyükleme.</b> Türkçe ya da İngilizce başlat.</figcaption></figure>
-        <figure><img src="img/kurulum.webp" width="1280" height="800" alt="Aether kurulum sihirbazı, hesap adımı" loading="lazy"><figcaption><b>Kurulum.</b> Adından kullanıcı adı önerilir.</figcaption></figure>
-        <figure><img src="img/koyu-tema.webp" width="1280" height="800" alt="Koyu temada Ayarlar ve terminal" loading="lazy"><figcaption><b>Koyu tema.</b> Ayarlar'da isteğe bağlı eklentiler.</figcaption></figure>
-      </div>
-    </div>
-  </section>
+<h2 id="indir">İndir</h2>
 
-  <section id="indir">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">İndir</div>
-        <h2>Aether ve Eclipse.</h2>
-        <p>İkisi de ücretsiz. İndirdiğin dosyanın bozulmadığını SHA-256 özetiyle doğrulayabilirsin.</p>
-      </div>
-      <div class="kartlar">
-        <div class="kart">
-          <div class="kart-bas">
-            <img src="img/aether.svg" alt="">
-            <div><h3>Aether 1.0</h3><p>İşletim sistemi · ISO kalıbı</p></div>
-          </div>
-          <dl>
-            <dt>Dosya</dt><dd class="mono">aether-1.0-nebula.iso</dd>
-            <dt>Boyut</dt><dd>370 MB (388.167.680 bayt)</dd>
-            <dt>Gereksinim</dt><dd>64 bit işlemci, 2 GB RAM, 10 GB disk</dd>
-            <dt>Önerilen</dt><dd>VirtualBox, VMware veya QEMU</dd>
-          </dl>
-          <div>
-            <div class="etiket" style="margin-bottom:8px">SHA-256</div>
-            <div class="ozet-satiri">
-              <code id="ozet-iso">4c39291651189f02c48a4a20749b7d972dfbc11af0663dd5f7e9ad2f8766d0f1</code>
-              <button class="kopyala" type="button" data-hedef="ozet-iso">Kopyala</button>
-            </div>
-          </div>
-          <a class="dugme" href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">ISO'yu indir <small>370 MB</small></a>
-        </div>
+<p>Şu anki sürüm <b>1.0 "Nebula"</b> (7 Ekim 2026).</p>
 
-        <div class="kart" id="eclipse">
-          <div class="kart-bas">
-            <img src="img/eclipse.svg" alt="">
-            <div><h3>Eclipse</h3><p>Web tarayıcı · Windows sürümü</p></div>
-          </div>
-          <dl>
-            <dt>Dosya</dt><dd class="mono">Eclipse-Windows.zip</dd>
-            <dt>Boyut</dt><dd>530 KB</dd>
-            <dt>Gereksinim</dt><dd>Windows 10 veya 11, 64 bit</dd>
-            <dt>Motor</dt><dd>Microsoft Edge WebView2 (Windows'ta yerleşik)</dd>
-          </dl>
-          <div>
-            <div class="etiket" style="margin-bottom:8px">SHA-256</div>
-            <div class="ozet-satiri">
-              <code id="ozet-zip">479babda80bb3ee3a78c6a268397ae9f922be8d7fdd01809bcf366013b6f86fd</code>
-              <button class="kopyala" type="button" data-hedef="ozet-zip">Kopyala</button>
-            </div>
-          </div>
-          <a class="dugme" href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Windows için indir <small>ZIP · 530 KB</small></a>
-          <p class="not">Zip'i aç ve <code>Eclipse.exe</code>'yi çalıştır. Linux sürümü Aether'in içinde hazır gelir.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="tablo">
+<table>
+  <tr><th>dosya</th><th>boyut</th><th>ne</th></tr>
+  <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">aether-1.0-nebula.iso</a>
+      <span class="ozet">sha256: 4c39291651189f02c48a4a20749b7d972dfbc11af0663dd5f7e9ad2f8766d0f1</span></td>
+    <td class="boy">370 MB</td>
+    <td>işletim sistemi, x86_64, BIOS + UEFI</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
+      <span class="ozet">sha256: 479babda80bb3ee3a78c6a268397ae9f922be8d7fdd01809bcf366013b6f86fd</span></td>
+    <td class="boy">530 KB</td>
+    <td>Eclipse tarayıcının Windows 10/11 sürümü</td>
+  </tr>
+</table>
+</div>
 
-  <section id="gorusler">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">Görüşler</div>
-        <h2>Aether'i denedin mi?</h2>
-        <p>Neyi beğendiğini, neyin çalışmadığını ve ne eklenmesini istediğini yaz. Yorum yazmak için bir GitHub hesabıyla giriş yapman gerekiyor.</p>
-      </div>
-      <div class="gorus-kutu">
-        <p class="gorus-not">Tüm konuşmalar <a href="https://github.com/1260120047-eng/aether/discussions">GitHub Discussions</a> sayfasında da görünür.</p>
-        <script src="https://giscus.app/client.js"
-                data-repo="1260120047-eng/aether"
-                data-repo-id="R_kgDOU_pYoA"
-                data-category="Announcements"
-                data-category-id="DIC_kwDOU_pYoM4DHRGf"
-                data-mapping="specific"
-                data-term="aether-1.0"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="top"
-                data-theme="preferred_color_scheme"
-                data-lang="tr"
-                data-loading="lazy"
-                crossorigin="anonymous"
-                async>
-        </script>
-      </div>
-    </div>
-  </section>
+<p>İndirdikten sonra dosyanın sağlam olup olmadığını kontrol etmek istersen:</p>
+<pre>sha256sum aether-1.0-nebula.iso                    # Linux
+certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 
-  <section id="kurulum">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">Kurulum</div>
-        <h2>VirtualBox'ta beş adımda.</h2>
-        <p>Aether şimdilik sanal makineler için hazırlandı ve onlarda test edildi.</p>
-      </div>
-      <div class="adimlar">
-        <ol class="liste">
-          <li><span><b>Yeni sanal makine oluştur.</b> Tür: Linux, sürüm: Other Linux (64-bit).</span></li>
-          <li><span><b>Kaynakları ayarla.</b> En az 2 GB bellek ve 10 GB sanal disk ver.</span></li>
-          <li><span><b>ISO'yu tak.</b> Ayarlar › Depolama bölümünde <code>aether-1.0-nebula.iso</code>'yu CD sürücüsüne ekle ve başlat.</span></li>
-          <li><span><b>Canlı dene.</b> Aether RAM'e yüklenir ve şifresiz açılır. Beğenirsen <b>Diske Kur</b>'a bas.</span></li>
-          <li><span><b>Yeniden başlat.</b> Kurulum bitince ISO'yu çıkar. Giriş ekranında kendi hesabınla oturum aç.</span></li>
-        </ol>
-        <div class="uyari">
-          <h3>Ekran siyah kalırsa</h3>
-          <p>Açılışta sistem RAM'e kopyalanırken bir dakika kadar bekleyebilir. Daha uzun sürerse:</p>
-          <ul>
-            <li>Önyükleme menüsünden <b>Güvenli grafik</b> seçeneğiyle başlat.</li>
-            <li>VirtualBox'ta Ayarlar › Ekran bölümünde <b>3D hızlandırmayı</b> kapat.</li>
-            <li>VirtualBox penceresinin altında kaplumbağa simgesi görüyorsan Windows'ta Hyper-V açık demektir; sanal makine çok yavaş çalışır.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+<p class="soluk"><small>Tüm dosyalar <a href="https://github.com/1260120047-eng/aether/releases">GitHub sürümler</a> sayfasında.</small></p>
 
-  <section id="sss" style="padding-top:0">
-    <div class="wrap">
-      <div class="bolum-bas">
-        <div class="etiket">Sık sorulanlar</div>
-        <h2>Sorular.</h2>
-      </div>
-      <div class="sss">
-        <details><summary>Aether ücretsiz mi?</summary><p>Evet. Aether tamamen özgür yazılımlar üzerine kurulu ve ücretsiz dağıtılıyor.</p></details>
-        <details><summary>Gerçek bir bilgisayara kurabilir miyim?</summary><p>ISO, BIOS ve UEFI ile açılır ve bir USB belleğe yazılabilir. Ancak Aether yalnızca sanal makinelerde test edildi. Gerçek donanımda ekran kartı, Wi-Fi ve ses sürücüleri eksik olabilir.</p></details>
-        <details><summary>Canlı oturumun şifresi ne?</summary><p>Canlı oturum şifresizdir. Diske kurarken kendi kullanıcı adını ve şifreni belirlersin.</p></details>
-        <details><summary>Sistemi nasıl güncellerim?</summary><p>Terminalde <code>aether-guncelle</code> yaz. Paketler Alpine Linux depolarından güncellenir.</p></details>
-        <details><summary>Neden bu kadar küçük?</summary><p>Aether, Docker dünyasının en küçük dağıtımı Alpine Linux'u temel alır. Müzik çalar ve pencere animasyonları gibi parçalar isteğe bağlı eklentiler olarak gelir.</p></details>
-      </div>
-    </div>
-  </section>
-</main>
+<h2>İçinde ne var</h2>
 
-<footer>
-  <div class="wrap">
-    <div style="display:grid;gap:14px">
-      <a class="marka" href="#"><img src="img/aether.svg" alt=""><span>AETHER</span></a>
-      <p>Aether 1.0 "Nebula" · Yapımcı: Hot Zot. Linux, Alpine, Openbox, GTK, WebKit ve Mesa topluluklarına teşekkürler.</p>
-    </div>
-    <p class="mono" style="font-size:12px;letter-spacing:.1em">ALPINE LINUX TABANLI · 2026</p>
-  </div>
-</footer>
+<ul>
+  <li>Linux 6.12 LTS çekirdeği, Alpine 3.22 tabanı</li>
+  <li>Openbox masaüstü, açık ve koyu tema (Ayarlar'dan anında değişiyor)</li>
+  <li>Kendi yazdığım kurulum programı: dil, klavye, kullanıcı, disk</li>
+  <li>Eclipse: yine kendi yazdığım, WebKit tabanlı tarayıcı. Sekmeler, yer imleri, geçmiş, gizli pencere var</li>
+  <li>Terminal, dosya yöneticisi, metin düzenleyici, resim görüntüleyici, hesap makinesi</li>
+  <li>Mayın Tarlası (bunu da ben yazdım), yıldızlı ekran koruyucu, kilit ekranı</li>
+  <li><code>gcc</code>, <code>g++</code>, <code>make</code> kurulu geliyor; SDL2/OpenGL geliştirme paketleri Ayarlar'dan eklenebiliyor</li>
+  <li>Terminalde <code>aether-info</code> ve <code>aether-guncelle</code></li>
+</ul>
 
-<script>
-  document.querySelectorAll('.kopyala').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var el = document.getElementById(b.dataset.hedef);
-      var metin = el.textContent.trim();
-      var bitti = function () { b.textContent = 'Kopyalandı'; setTimeout(function () { b.textContent = 'Kopyala'; }, 1600); };
-      var sec = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = 'Seçildi'; };
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(metin).then(bitti, sec); else sec();
-    });
-  });
+<p>Müzik çalar, sistem sesleri ve pencere animasyonları ISO'yu şişirmesin diye isteğe bağlı eklenti olarak duruyor.</p>
+
+<div class="resimler">
+  <figure>
+    <a href="img/eclipse.webp"><img src="img/eclipse.webp" width="1102" height="750" alt="Eclipse tarayıcı" loading="lazy"></a>
+    <figcaption>Eclipse'in ana sayfası</figcaption>
+  </figure>
+  <figure>
+    <a href="img/kurulum.webp"><img src="img/kurulum.webp" width="1280" height="800" alt="Kurulum programı" loading="lazy"></a>
+    <figcaption>Kurulum, hesap adımı</figcaption>
+  </figure>
+  <figure>
+    <a href="img/koyu-tema.webp"><img src="img/koyu-tema.webp" width="1280" height="800" alt="Koyu tema" loading="lazy"></a>
+    <figcaption>Koyu tema ve Ayarlar</figcaption>
+  </figure>
+  <figure>
+    <a href="img/grub.webp"><img src="img/grub.webp" width="800" height="600" alt="Önyükleme menüsü" loading="lazy"></a>
+    <figcaption>Önyükleme menüsü</figcaption>
+  </figure>
+</div>
+
+<h2 id="kurulum">Kurulum</h2>
+
+<p>Ben VirtualBox ve QEMU'da denedim, oralarda sorunsuz çalışıyor. Gerçek bilgisayarda henüz denemedim (aşağıya bak).</p>
+
+<ol>
+  <li>VirtualBox'ta yeni makine aç. Tür: Linux, sürüm: Other Linux (64-bit).</li>
+  <li>En az 2 GB RAM, 10 GB disk ver.</li>
+  <li>Ayarlar → Depolama'dan ISO'yu CD sürücüsüne tak, makineyi başlat.</li>
+  <li>Açılınca canlı oturuma şifresiz girer. İstediğin kadar dene, sonra masaüstündeki <b>Diske Kur</b>'a bas.</li>
+  <li>Kurulum bitince ISO'yu çıkarıp yeniden başlat ve kendi hesabınla gir.</li>
+</ol>
+
+<p>Açılışta sistem RAM'e kopyalanırken ekran bir dakika kadar bekleyebilir, bu normal.</p>
+
+<h2 id="sorunlar">Bilinen sorunlar</h2>
+
+<ul>
+  <li>Gerçek donanımda test edilmedi. Wi-Fi, ses ve bazı ekran kartları çalışmayabilir. Denersen ne olduğunu yazarsan çok sevinirim.</li>
+  <li>Ekran siyah kalırsa önyükleme menüsünden <b>Güvenli grafik</b>'i seç ya da VirtualBox'ta 3D hızlandırmayı kapat.</li>
+  <li>VirtualBox'ta altta kaplumbağa simgesi çıkıyorsa Windows'ta Hyper-V açık demektir, her şey çok yavaş çalışır.</li>
+  <li>Sadece 64 bit.</li>
+</ul>
+
+<h2>Sürüm notları</h2>
+
+<dl class="gunluk">
+  <dt>1.0 "Nebula" <span class="soluk">· 7 Ekim 2026</span></dt>
+  <dd>İlk sürüm. NetSurf çıkarıldı, yerine Eclipse geldi. VirtualBox'taki siyah ekran sorunu düzeltildi.</dd>
+</dl>
+
+<h2>Sırada ne var</h2>
+
+<p>Kendi oyun motorumun harita editörünü Aether'e taşımak istiyorum. Bir sonraki sürümde büyük ihtimalle o olacak.</p>
+
+<h2 id="yorum">Yorumlar</h2>
+
+<p>Denediysen ne düşündüğünü yaz: neyi beğendin, ne bozuk, ne eklensin. Yorum için GitHub hesabı gerekiyor. Hepsi <a href="https://github.com/1260120047-eng/aether/discussions">Discussions</a> sayfasında da duruyor.</p>
+
+<div id="yorumlar">
+<script src="https://giscus.app/client.js"
+        data-repo="1260120047-eng/aether"
+        data-repo-id="R_kgDOU_pYoA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOU_pYoM4DHRGf"
+        data-mapping="specific"
+        data-term="aether-1.0"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="tr"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
 </script>
+</div>
+
+<div class="alt">
+  Aether, Hot Zot tarafından yapıldı. Alpine, Linux, Openbox, GTK, WebKit ve Mesa'yı yapan herkese teşekkürler.<br>
+  Son güncelleme: 7 Ekim 2026
+</div>
+
+</div>
 </body>
 </html>
