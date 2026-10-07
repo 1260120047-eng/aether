@@ -2,7 +2,7 @@
 
 Alpine Linux tabanlı, hafif ve Türkçe bir işletim sistemi. **Yapımcı: Hot Zot**
 
-- Site: https://1260120047-eng.github.io/aether/
+- Site: https://aether-os.dev
 - İndir: [Releases](https://github.com/1260120047-eng/aether/releases/latest) sayfasından `aether-1.0-nebula.iso` (370 MB) ve Windows için `Eclipse-Windows.zip`
 
 ## Özellikler
