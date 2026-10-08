@@ -102,38 +102,38 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 
 <p>Hi, I'm Hot Zot. Aether is a small Linux distribution I made purely out of curiosity. I wanted to see what goes on inside an operating system; then it grew into something with its own installer, its own settings app and even its own web browser.</p>
 
-<p>It's built on Alpine Linux and the ISO is around 370 MB. It loads into RAM at boot, and if you like it you can install it to disk. The interface is in Turkish and English (pick English in the boot menu).</p>
+<p>It's built on Alpine Linux and the ISO is around 485 MB. It loads into RAM at boot, and if you like it you can install it to disk. The interface is in Turkish and English (pick English in the boot menu).</p>
 
 <figure>
   <a href="../img/masaustu.webp"><img src="../img/masaustu.webp" width="1280" height="800" alt="Aether desktop"></a>
-  <figcaption>The desktop. Right-click or press Super for the menu.</figcaption>
+  <figcaption>The desktop, with Yörünge and Aether Terminal. For the menu, click the logo on the left, right-click, or press Super.</figcaption>
 </figure>
 
 <h2 id="download">Download</h2>
 
-<p>Current version: <b>1.0 "Nebula"</b> (7 October 2026).</p>
+<p>Current version: <b>1.1 "Nebula"</b> (8 October 2026). Older versions are on the releases page.</p>
 
 <div class="tablo">
 <table>
   <tr><th>file</th><th>size</th><th>what</th></tr>
   <tr>
-    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">aether-1.0-nebula.iso</a>
-      <span class="ozet">sha256: 4c39291651189f02c48a4a20749b7d972dfbc11af0663dd5f7e9ad2f8766d0f1</span></td>
-    <td class="boy">370 MB</td>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/aether-1.1-nebula.iso">aether-1.1-nebula.iso</a>
+      <span class="ozet">sha256: b7f82d963c78a9e3547463438df34c16fb24ee85f16842e20599a84706650dfa</span></td>
+    <td class="boy">485 MB</td>
     <td>the operating system, x86_64, BIOS + UEFI</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
-      <span class="ozet">sha256: 479babda80bb3ee3a78c6a268397ae9f922be8d7fdd01809bcf366013b6f86fd</span></td>
-    <td class="boy">530 KB</td>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
+      <span class="ozet">sha256: 4d2270a6167e861c8e8ca14c2fbdd2f535d514414b7749238180bb74ba35c0f3</span></td>
+    <td class="boy">575 KB</td>
     <td>the Eclipse browser for Windows 10/11</td>
   </tr>
 </table>
 </div>
 
 <p>To check that the download isn't corrupted:</p>
-<pre>sha256sum aether-1.0-nebula.iso                    # Linux
-certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
+<pre>sha256sum aether-1.1-nebula.iso                    # Linux
+certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 
 <p>Aether is open source. All the code is at <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> under the GPL-3.0 license, along with instructions for building it.</p>
 
@@ -143,11 +143,12 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 
 <ul>
   <li>Linux 6.12 LTS kernel on an Alpine 3.22 base</li>
-  <li>Openbox desktop with light and dark themes (switch instantly in Settings)</li>
+  <li>Yörünge, a window manager I wrote myself, with a taskbar at the bottom and light and dark themes (switch instantly in Settings)</li>
+  <li>Wi-Fi, sound and notifications. Settings also has a Drivers page that detects your hardware and installs missing firmware in one click</li>
   <li>An installer I wrote myself: language, keyboard, user, disk</li>
-  <li>Eclipse: my own WebKit-based browser, with tabs, bookmarks, history and private windows</li>
-  <li>Terminal, file manager, text editor, image viewer, calculator</li>
-  <li>Minesweeper, a starfield screensaver, a lock screen</li>
+  <li>Eclipse: my own WebKit-based browser, with tabs, bookmarks, history, private windows and an ad blocker</li>
+  <li>My own terminal (with tabs), file manager, text editor, image viewer, calculator</li>
+  <li>Minesweeper, a starfield screensaver, a lock screen, 9 wallpapers</li>
   <li><code>gcc</code>, <code>g++</code> and <code>make</code> come preinstalled; SDL2/OpenGL development packages can be added from Settings</li>
   <li><code>aether-info</code> and <code>aether-guncelle</code> (update) in the terminal</li>
 </ul>
@@ -186,12 +187,12 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
   <li>When the install finishes, remove the ISO, restart and log in with your own account.</li>
 </ol>
 
-<p>While the system is being copied into RAM at boot, the screen may sit still for about a minute. That's normal.</p>
+<p>The system no longer waits to be copied into RAM; the copy runs in the background. In QEMU, boot went from 2.5 minutes to 70 seconds.</p>
 
 <h2 id="issues">Known issues</h2>
 
 <ul>
-  <li>Not tested on real hardware. Wi-Fi, sound and some graphics cards may not work. If you try it, I'd love to hear how it went.</li>
+  <li>Not tested on real hardware. Wi-Fi and sound support arrived in 1.1, but I could only try them in a virtual machine. If you try it, I'd love to hear how it went.</li>
   <li>If the screen stays black, choose <b>Safe graphics</b> in the boot menu, or turn off 3D acceleration in VirtualBox.</li>
   <li>If VirtualBox shows a turtle icon at the bottom, Hyper-V is enabled on Windows and everything will be very slow.</li>
   <li>64-bit only.</li>
@@ -200,6 +201,8 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 <h2>Release notes</h2>
 
 <dl class="gunluk">
+  <dt>1.1 "Nebula" <span class="soluk">· 8 October 2026</span></dt>
+  <dd>Openbox is gone; my own window manager Yörünge and a taskbar replace it. Notifications, Wi-Fi settings, a Drivers page, an ad blocker in Eclipse, my own terminal, 6 new wallpapers. Boot is more than twice as fast.</dd>
   <dt>1.0 "Nebula" <span class="soluk">· 7 October 2026</span></dt>
   <dd>First release. NetSurf was removed and replaced with Eclipse. Fixed the black screen in VirtualBox.</dd>
 </dl>
@@ -233,8 +236,8 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 </div>
 
 <div class="alt">
-  Aether is made by Hot Zot and is <a href="https://github.com/1260120047-eng/aether-os">open source</a> (GPL-3.0). Thanks to everyone who makes Alpine, Linux, Openbox, GTK, WebKit and Mesa.<br>
-  Last updated: 7 October 2026
+  Aether is made by Hot Zot and is <a href="https://github.com/1260120047-eng/aether-os">open source</a> (GPL-3.0). Thanks to everyone who makes Alpine, Linux, GTK, WebKit, VTE and Mesa, and to AdAway for the ad list.<br>
+  Last updated: 8 October 2026
 </div>
 
 </div>

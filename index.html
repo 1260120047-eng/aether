@@ -102,38 +102,38 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 
 <p>Merhaba, ben Hot Zot. Aether, tamamen merak ettiğim için yaptığım küçük bir Linux dağıtımı. Bir işletim sisteminin içinde neler döndüğünü görmek istedim; sonra iş büyüdü ve kendi kurulum programı, ayarları, hatta kendi tarayıcısı olan bir şeye dönüştü.</p>
 
-<p>Alpine Linux üzerine kurulu, ISO dosyası 370 MB civarında. Açılışta RAM'e yükleniyor, beğenirsen diske kurabiliyorsun. Arayüz Türkçe (İngilizce de var).</p>
+<p>Alpine Linux üzerine kurulu, ISO dosyası 485 MB civarında. Açılışta RAM'e yükleniyor, beğenirsen diske kurabiliyorsun. Arayüz Türkçe (İngilizce de var).</p>
 
 <figure>
   <a href="img/masaustu.webp"><img src="img/masaustu.webp" width="1280" height="800" alt="Aether masaüstü"></a>
-  <figcaption>Masaüstü. Menü için sağ tık ya da Super tuşu.</figcaption>
+  <figcaption>Masaüstü, Yörünge ve Aether Terminal. Menü için soldaki logo, sağ tık ya da Super tuşu.</figcaption>
 </figure>
 
 <h2 id="indir">İndir</h2>
 
-<p>Şu anki sürüm <b>1.0 "Nebula"</b> (7 Ekim 2026).</p>
+<p>Şu anki sürüm <b>1.1 "Nebula"</b> (8 Ekim 2026). Eski sürümler sürümler sayfasında duruyor.</p>
 
 <div class="tablo">
 <table>
   <tr><th>dosya</th><th>boyut</th><th>ne</th></tr>
   <tr>
-    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/aether-1.0-nebula.iso">aether-1.0-nebula.iso</a>
-      <span class="ozet">sha256: 4c39291651189f02c48a4a20749b7d972dfbc11af0663dd5f7e9ad2f8766d0f1</span></td>
-    <td class="boy">370 MB</td>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/aether-1.1-nebula.iso">aether-1.1-nebula.iso</a>
+      <span class="ozet">sha256: b7f82d963c78a9e3547463438df34c16fb24ee85f16842e20599a84706650dfa</span></td>
+    <td class="boy">485 MB</td>
     <td>işletim sistemi, x86_64, BIOS + UEFI</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.0/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
-      <span class="ozet">sha256: 479babda80bb3ee3a78c6a268397ae9f922be8d7fdd01809bcf366013b6f86fd</span></td>
-    <td class="boy">530 KB</td>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
+      <span class="ozet">sha256: 4d2270a6167e861c8e8ca14c2fbdd2f535d514414b7749238180bb74ba35c0f3</span></td>
+    <td class="boy">575 KB</td>
     <td>Eclipse tarayıcının Windows 10/11 sürümü</td>
   </tr>
 </table>
 </div>
 
 <p>İndirdikten sonra dosyanın sağlam olup olmadığını kontrol etmek istersen:</p>
-<pre>sha256sum aether-1.0-nebula.iso                    # Linux
-certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
+<pre>sha256sum aether-1.1-nebula.iso                    # Linux
+certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 
 <p>Aether açık kaynak. Kodların hepsi <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> adresinde, GPL-3.0 lisansıyla. Nasıl derleneceği de orada yazıyor.</p>
 
@@ -143,11 +143,12 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 
 <ul>
   <li>Linux 6.12 LTS çekirdeği, Alpine 3.22 tabanı</li>
-  <li>Openbox masaüstü, açık ve koyu tema (Ayarlar'dan anında değişiyor)</li>
+  <li>Yörünge: kendi yazdığım pencere yöneticisi. Altta görev çubuğu, açık ve koyu tema (Ayarlar'dan anında değişiyor)</li>
+  <li>Wi-Fi, ses, bildirimler. Ayarlar'da bir de Sürücüler sayfası var: donanımı tanıyor, eksik firmware'i tek tıkla kuruyor</li>
   <li>Kendi yazdığım kurulum programı: dil, klavye, kullanıcı, disk</li>
-  <li>Eclipse: yine kendi yazdığım, WebKit tabanlı tarayıcı. Sekmeler, yer imleri, geçmiş, gizli pencere var</li>
-  <li>Terminal, dosya yöneticisi, metin düzenleyici, resim görüntüleyici, hesap makinesi</li>
-  <li>Mayın Tarlası, yıldızlı ekran koruyucu, kilit ekranı</li>
+  <li>Eclipse: yine kendi yazdığım, WebKit tabanlı tarayıcı. Sekmeler, yer imleri, geçmiş, gizli pencere ve reklam engelleyici var</li>
+  <li>Kendi terminalim (sekmeli), dosya yöneticisi, metin düzenleyici, resim görüntüleyici, hesap makinesi</li>
+  <li>Mayın Tarlası, yıldızlı ekran koruyucu, kilit ekranı, 9 duvar kağıdı</li>
   <li><code>gcc</code>, <code>g++</code>, <code>make</code> kurulu geliyor; SDL2/OpenGL geliştirme paketleri Ayarlar'dan eklenebiliyor</li>
   <li>Terminalde <code>aether-info</code> ve <code>aether-guncelle</code></li>
 </ul>
@@ -185,12 +186,12 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
   <li>Kurulum bitince ISO'yu çıkarıp yeniden başlat ve kendi hesabınla gir.</li>
 </ol>
 
-<p>Açılışta sistem RAM'e kopyalanırken ekran bir dakika kadar bekleyebilir, bu normal.</p>
+<p>Sistem artık RAM'e kopyalanmayı beklemeden açılıyor, kopyalama arka planda sürüyor. QEMU'da açılış 2,5 dakikadan 70 saniyeye indi.</p>
 
 <h2 id="sorunlar">Bilinen sorunlar</h2>
 
 <ul>
-  <li>Gerçek donanımda test edilmedi. Wi-Fi, ses ve bazı ekran kartları çalışmayabilir. Denersen ne olduğunu yazarsan çok sevinirim.</li>
+  <li>Gerçek donanımda test edilmedi. Wi-Fi ve ses desteği 1.1'de geldi ama ben sadece sanal makinede deneyebildim. Denersen ne olduğunu yazarsan çok sevinirim.</li>
   <li>Ekran siyah kalırsa önyükleme menüsünden <b>Güvenli grafik</b>'i seç ya da VirtualBox'ta 3D hızlandırmayı kapat.</li>
   <li>VirtualBox'ta altta kaplumbağa simgesi çıkıyorsa Windows'ta Hyper-V açık demektir, her şey çok yavaş çalışır.</li>
   <li>Sadece 64 bit.</li>
@@ -199,6 +200,8 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 <h2>Sürüm notları</h2>
 
 <dl class="gunluk">
+  <dt>1.1 "Nebula" <span class="soluk">· 8 Ekim 2026</span></dt>
+  <dd>Openbox gitti, yerine kendi pencere yöneticim Yörünge ve görev çubuğu geldi. Bildirimler, Wi-Fi ayarları, Sürücüler sayfası, Eclipse'e reklam engelleyici, kendi terminalim, 6 yeni duvar kağıdı. Açılış iki kattan fazla hızlandı.</dd>
   <dt>1.0 "Nebula" <span class="soluk">· 7 Ekim 2026</span></dt>
   <dd>İlk sürüm. NetSurf çıkarıldı, yerine Eclipse geldi. VirtualBox'taki siyah ekran sorunu düzeltildi.</dd>
 </dl>
@@ -232,8 +235,8 @@ certutil -hashfile aether-1.0-nebula.iso SHA256    # Windows</pre>
 </div>
 
 <div class="alt">
-  Aether, Hot Zot tarafından yapıldı ve <a href="https://github.com/1260120047-eng/aether-os">açık kaynak</a> (GPL-3.0). Alpine, Linux, Openbox, GTK, WebKit ve Mesa'yı yapan herkese teşekkürler.<br>
-  Son güncelleme: 7 Ekim 2026
+  Aether, Hot Zot tarafından yapıldı ve <a href="https://github.com/1260120047-eng/aether-os">açık kaynak</a> (GPL-3.0). Alpine, Linux, GTK, WebKit, VTE ve Mesa'yı yapan herkese, reklam listesi için AdAway'e teşekkürler.<br>
+  Son güncelleme: 8 Ekim 2026
 </div>
 
 </div>
