@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aether Linux</title>
-<meta name="description" content="Aether: Alpine tabanlı, küçük, Türkçe bir Linux dağıtımı. Hot Zot'un hobi projesi.">
+<meta name="description" content="Aether: Arch Linux tabanlı, küçük, Türkçe bir Linux dağıtımı. Hot Zot'un hobi projesi.">
 <link rel="alternate" hreflang="tr" href="https://aether-os.dev/">
 <link rel="alternate" hreflang="en" href="https://aether-os.dev/en/">
 <link rel="icon" href="img/aether.svg" type="image/svg+xml">
@@ -102,25 +102,31 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 
 <p>Merhaba, ben Hot Zot. Aether, tamamen merak ettiğim için yaptığım küçük bir Linux dağıtımı. Bir işletim sisteminin içinde neler döndüğünü görmek istedim; sonra iş büyüdü ve kendi kurulum programı, ayarları, hatta kendi tarayıcısı olan bir şeye dönüştü.</p>
 
-<p>Alpine Linux üzerine kurulu, ISO dosyası 485 MB civarında. Açılışta RAM'e yükleniyor, beğenirsen diske kurabiliyorsun. Arayüz Türkçe (İngilizce de var).</p>
+<p>2.0 sürümünden beri Arch Linux üzerine kurulu, ISO dosyası 800 MB civarında. Açılışta RAM'e yükleniyor, beğenirsen diske (istersen Windows'un yanına) kurabiliyorsun. Uygulama Mağazası'ndan Arch depolarındaki ve Flathub'daki uygulamaları tek tıkla kurabiliyorsun. Arayüz Türkçe (İngilizce de var).</p>
 
 <figure>
-  <a href="img/masaustu.webp"><img src="img/masaustu.webp" width="1280" height="800" alt="Aether masaüstü"></a>
-  <figcaption>Masaüstü, Yörünge ve Aether Terminal. Menü için soldaki logo, sağ tık ya da Super tuşu.</figcaption>
+  <a href="img/dosyalar.webp"><img src="img/dosyalar.webp" width="1280" height="800" alt="Aether 2.0 masaüstü ve Aether Dosyalar"></a>
+  <figcaption>Aether 2.0 masaüstü ve yeni dosya yöneticisi Aether Dosyalar. Menü için soldaki logo ya da Super tuşu.</figcaption>
 </figure>
 
 <h2 id="indir">İndir</h2>
 
-<p>Şu anki sürüm <b>1.1 "Nebula"</b> (8 Ekim 2026). Eski sürümler sürümler sayfasında duruyor.</p>
+<p>Şu anki sürüm <b>2.0 "Orion"</b> (9 Ekim 2026). Daha hafif bir şey istersen Alpine tabanlı 1.1 "Nebula" da duruyor.</p>
 
 <div class="tablo">
 <table>
   <tr><th>dosya</th><th>boyut</th><th>ne</th></tr>
   <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/2.0/aether-2.0-orion.iso">aether-2.0-orion.iso</a>
+      <span class="ozet">sha256: a4a47bf7ab5cbe0e055311063aa3dce0987a1a5adf8c45fd7d40d3236d4ca6df</span></td>
+    <td class="boy">798 MB</td>
+    <td><b>2.0</b>, işletim sistemi, x86_64, BIOS + UEFI</td>
+  </tr>
+  <tr>
     <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/aether-1.1-nebula.iso">aether-1.1-nebula.iso</a>
       <span class="ozet">sha256: b7f82d963c78a9e3547463438df34c16fb24ee85f16842e20599a84706650dfa</span></td>
     <td class="boy">485 MB</td>
-    <td>işletim sistemi, x86_64, BIOS + UEFI</td>
+    <td>1.1, Alpine tabanlı, daha hafif; mağaza yok</td>
   </tr>
   <tr>
     <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
@@ -132,45 +138,47 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 </div>
 
 <p>İndirdikten sonra dosyanın sağlam olup olmadığını kontrol etmek istersen:</p>
-<pre>sha256sum aether-1.1-nebula.iso                    # Linux
-certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
+<pre>sha256sum aether-2.0-orion.iso                    # Linux
+certutil -hashfile aether-2.0-orion.iso SHA256    # Windows</pre>
 
-<p>Aether açık kaynak. Kodların hepsi <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> adresinde, GPL-3.0 lisansıyla. Nasıl derleneceği de orada yazıyor.</p>
+<p>Aether açık kaynak. Kodların hepsi <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> adresinde, GPL-3.0 lisansıyla. Nasıl derleneceği de orada yazıyor. 1.1'in kodları <a href="https://github.com/1260120047-eng/aether-os/tree/1.1">1.1 dalında</a>.</p>
 
 <p class="soluk"><small>Tüm dosyalar <a href="https://github.com/1260120047-eng/aether/releases">GitHub sürümler</a> sayfasında.</small></p>
 
 <h2>İçinde ne var</h2>
 
 <ul>
-  <li>Linux 6.12 LTS çekirdeği, Alpine 3.22 tabanı</li>
-  <li>Yörünge: kendi yazdığım pencere yöneticisi. Altta görev çubuğu, açık ve koyu tema (Ayarlar'dan anında değişiyor)</li>
-  <li>Wi-Fi, ses, bildirimler. Ayarlar'da bir de Sürücüler sayfası var: donanımı tanıyor, eksik firmware'i tek tıkla kuruyor</li>
-  <li>Kendi yazdığım kurulum programı: dil, klavye, kullanıcı, disk</li>
+  <li>Arch Linux tabanı, güncel Linux çekirdeği. <code>sudo pacman -S</code> ile Arch depolarındaki her şey kurulabiliyor</li>
+  <li><b>Uygulama Mağazası</b>: Arch depoları ve Flathub bir arada; Firefox, Discord, Steam, Prism Launcher, LibreOffice, OBS... tek tıkla</li>
+  <li><b>Aether Dosyalar</b>: kendi dosya yöneticim. Kopyalama ilerlemesi, çöp kutusu, sürükle bırak</li>
+  <li><b>Görev Yöneticisi</b> (Ctrl+Shift+Esc): işlemler ve CPU, bellek, disk, ağ grafikleri</li>
+  <li><b>Oyun Modu</b>: Steam ve ekran kartı sürücüsü tek tıkla, performans modu</li>
+  <li>Yörünge: kendi yazdığım pencere yöneticisi. Görev çubuğu, masaüstü simgeleri, Windows'takine benzer sağ tık menüleri, açık ve koyu tema</li>
+  <li>Kendi yazdığım kurulum programı: dil, klavye, kullanıcı, disk. Windows'un yanına da kurabiliyor</li>
+  <li>Wi-Fi, ses, bildirimler, Ayarlar'da Sürücüler sayfası</li>
   <li>Eclipse: yine kendi yazdığım, WebKit tabanlı tarayıcı. Sekmeler, yer imleri, geçmiş, gizli pencere ve reklam engelleyici var</li>
-  <li>Kendi terminalim (sekmeli), dosya yöneticisi, metin düzenleyici, resim görüntüleyici, hesap makinesi</li>
-  <li>Mayın Tarlası, yıldızlı ekran koruyucu, kilit ekranı, 9 duvar kağıdı</li>
-  <li><code>gcc</code>, <code>g++</code>, <code>make</code> kurulu geliyor; SDL2/OpenGL geliştirme paketleri Ayarlar'dan eklenebiliyor</li>
-  <li>Terminalde <code>aether-info</code> ve <code>aether-guncelle</code></li>
+  <li>Kendi terminalim (sekmeli), metin düzenleyici, resim görüntüleyici, hesap makinesi, Mayın Tarlası, yıldızlı ekran koruyucu</li>
+  <li>Sanal makinelerde 3D hızlandırma (VirtualBox, VMware, QEMU), pencere boyutuna göre kendiliğinden ayarlanan çözünürlük</li>
+  <li><code>gcc</code>, <code>make</code> kurulu geliyor. Terminalde <code>aether-info</code> ve <code>aether-guncelle</code></li>
 </ul>
 
-<p>Müzik çalar, sistem sesleri ve pencere animasyonları ISO'yu şişirmesin diye isteğe bağlı eklenti olarak duruyor.</p>
 
 <div class="resimler">
   <figure>
+    <a href="img/magaza.webp"><img src="img/magaza.webp" width="1280" height="800" alt="Uygulama Mağazası" loading="lazy"></a>
+    <figcaption>Uygulama Mağazası</figcaption>
+  </figure>
+  <figure>
+    <a href="img/gorev.webp"><img src="img/gorev.webp" width="1280" height="800" alt="Görev Yöneticisi" loading="lazy"></a>
+    <figcaption>Görev Yöneticisi</figcaption>
+  </figure>
+  <figure>
+    <a href="img/sagtik.webp"><img src="img/sagtik.webp" width="1280" height="800" alt="Masaüstü sağ tık menüsü" loading="lazy"></a>
+    <figcaption>Masaüstünde sağ tık</figcaption>
+  </figure>
+  <figure>
     <a href="img/eclipse.webp"><img src="img/eclipse.webp" width="1102" height="750" alt="Eclipse tarayıcı" loading="lazy"></a>
     <figcaption>Eclipse'in ana sayfası</figcaption>
-  </figure>
-  <figure>
-    <a href="img/kurulum.webp"><img src="img/kurulum.webp" width="1280" height="800" alt="Kurulum programı" loading="lazy"></a>
-    <figcaption>Kurulum, hesap adımı</figcaption>
-  </figure>
-  <figure>
-    <a href="img/koyu-tema.webp"><img src="img/koyu-tema.webp" width="1280" height="800" alt="Koyu tema" loading="lazy"></a>
-    <figcaption>Koyu tema ve Ayarlar</figcaption>
-  </figure>
-  <figure>
-    <a href="img/grub.webp"><img src="img/grub.webp" width="800" height="600" alt="Önyükleme menüsü" loading="lazy"></a>
-    <figcaption>Önyükleme menüsü</figcaption>
   </figure>
 </div>
 
@@ -179,19 +187,21 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 <p>Ben VirtualBox ve QEMU'da denedim, oralarda sorunsuz çalışıyor. Gerçek bilgisayarda henüz denemedim (aşağıya bak).</p>
 
 <ol>
-  <li>VirtualBox'ta yeni makine aç. Tür: Linux, sürüm: Other Linux (64-bit).</li>
-  <li>En az 2 GB RAM, 10 GB disk ver.</li>
+  <li>VirtualBox'ta yeni makine aç. Tür: Linux, sürüm: Arch Linux (64-bit).</li>
+  <li>En az 2 GB RAM (3 GB daha rahat), 10 GB disk ver.</li>
+  <li>İstersen Ayarlar → Ekran'da grafik denetleyiciyi <b>VMSVGA</b> yap, <b>3D hızlandırmayı etkinleştir</b>'i işaretle ve video belleğini 128 MB'a çıkar.</li>
   <li>Ayarlar → Depolama'dan ISO'yu CD sürücüsüne tak, makineyi başlat.</li>
-  <li>Açılınca canlı oturuma şifresiz girer. İstediğin kadar dene, sonra masaüstündeki <b>Diske Kur</b>'a bas.</li>
+  <li>Açılınca canlı oturuma şifresiz girer. İstediğin kadar dene, sonra masaüstündeki <b>Aether'i Kur</b>'a bas.</li>
   <li>Kurulum bitince ISO'yu çıkarıp yeniden başlat ve kendi hesabınla gir.</li>
 </ol>
 
-<p>Sistem artık RAM'e kopyalanmayı beklemeden açılıyor, kopyalama arka planda sürüyor. QEMU'da açılış 2,5 dakikadan 70 saniyeye indi.</p>
+<p>Gerçek bir bilgisayarda Windows'un yanına kuracaksan: önce önemli dosyalarını yedekle, Windows'ta hızlı başlatmayı ve BitLocker'ı kapat, BIOS/UEFI ayarlarından Secure Boot'u kapat. Kurulum programında "Windows'un yanına kur"u seçip Aether'e ne kadar yer vereceğini ayarlaman yeterli; açılışta Aether ile Windows arasında seçim yapabileceğin bir menü çıkar.</p>
 
 <h2 id="sorunlar">Bilinen sorunlar</h2>
 
 <ul>
-  <li>Gerçek donanımda test edilmedi. Wi-Fi ve ses desteği 1.1'de geldi ama ben sadece sanal makinede deneyebildim. Denersen ne olduğunu yazarsan çok sevinirim.</li>
+  <li>Gerçek donanımda test edilmedi, ben sadece sanal makinede deneyebildim. Denersen ne olduğunu yazarsan çok sevinirim.</li>
+  <li>Secure Boot desteklenmiyor, kapatman gerekiyor.</li>
   <li>Ekran siyah kalırsa önyükleme menüsünden <b>Güvenli grafik</b>'i seç ya da VirtualBox'ta 3D hızlandırmayı kapat.</li>
   <li>VirtualBox'ta altta kaplumbağa simgesi çıkıyorsa Windows'ta Hyper-V açık demektir, her şey çok yavaş çalışır.</li>
   <li>Sadece 64 bit.</li>
@@ -200,6 +210,8 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 <h2>Sürüm notları</h2>
 
 <dl class="gunluk">
+  <dt>2.0 "Orion" <span class="soluk">· 9 Ekim 2026</span></dt>
+  <dd>Arch Linux tabanına geçildi. Uygulama Mağazası (Arch depoları ve Flathub), Aether Dosyalar, Görev Yöneticisi, Oyun Modu, masaüstü simgeleri ve sağ tık menüleri, başlat menüsünde yüklü uygulamalar, Windows'un yanına kurulum, <code>sudo</code>, sanal makinede 3D hızlandırma, çözünürlük değişince uyum sağlayan pencereler.</dd>
   <dt>1.1 "Nebula" <span class="soluk">· 8 Ekim 2026</span></dt>
   <dd>Openbox gitti, yerine kendi pencere yöneticim Yörünge ve görev çubuğu geldi. Bildirimler, Wi-Fi ayarları, Sürücüler sayfası, Eclipse'e reklam engelleyici, kendi terminalim, 6 yeni duvar kağıdı. Açılış iki kattan fazla hızlandı.</dd>
   <dt>1.0 "Nebula" <span class="soluk">· 7 Ekim 2026</span></dt>
@@ -235,8 +247,8 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 </div>
 
 <div class="alt">
-  Aether, Hot Zot tarafından yapıldı ve <a href="https://github.com/1260120047-eng/aether-os">açık kaynak</a> (GPL-3.0). Alpine, Linux, GTK, WebKit, VTE ve Mesa'yı yapan herkese, reklam listesi için AdAway'e teşekkürler.<br>
-  Son güncelleme: 8 Ekim 2026
+  Aether, Hot Zot tarafından yapıldı ve <a href="https://github.com/1260120047-eng/aether-os">açık kaynak</a> (GPL-3.0). Arch Linux, Alpine, Linux, GTK, WebKit, VTE ve Mesa'yı yapan herkese, reklam listesi için AdAway'e teşekkürler.<br>
+  Son güncelleme: 9 Ekim 2026
 </div>
 
 </div>

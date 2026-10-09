@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aether Linux</title>
-<meta name="description" content="Aether: a small Linux distribution based on Alpine, in Turkish and English. A hobby project by Hot Zot.">
+<meta name="description" content="Aether: a small Linux distribution based on Arch Linux, in Turkish and English. A hobby project by Hot Zot.">
 <link rel="alternate" hreflang="tr" href="https://aether-os.dev/">
 <link rel="alternate" hreflang="en" href="https://aether-os.dev/en/">
 <link rel="icon" href="../img/aether.svg" type="image/svg+xml">
@@ -102,25 +102,31 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 
 <p>Hi, I'm Hot Zot. Aether is a small Linux distribution I made purely out of curiosity. I wanted to see what goes on inside an operating system; then it grew into something with its own installer, its own settings app and even its own web browser.</p>
 
-<p>It's built on Alpine Linux and the ISO is around 485 MB. It loads into RAM at boot, and if you like it you can install it to disk. The interface is in Turkish and English (pick English in the boot menu).</p>
+<p>Since version 2.0 it's built on Arch Linux, and the ISO is around 800 MB. It loads into RAM at boot, and if you like it you can install it to disk (alongside Windows, if you want). The App Store installs apps from the Arch repositories and Flathub in one click. The interface is in Turkish and English (pick English in the boot menu).</p>
 
 <figure>
-  <a href="../img/masaustu.webp"><img src="../img/masaustu.webp" width="1280" height="800" alt="Aether desktop"></a>
-  <figcaption>The desktop, with Yörünge and Aether Terminal. For the menu, click the logo on the left, right-click, or press Super.</figcaption>
+  <a href="../img/dosyalar.webp"><img src="../img/dosyalar.webp" width="1280" height="800" alt="Aether 2.0 desktop and Aether Files"></a>
+  <figcaption>The Aether 2.0 desktop and the new file manager, Aether Files. For the menu, click the logo on the left or press Super.</figcaption>
 </figure>
 
 <h2 id="download">Download</h2>
 
-<p>Current version: <b>1.1 "Nebula"</b> (8 October 2026). Older versions are on the releases page.</p>
+<p>Current version: <b>2.0 "Orion"</b> (9 October 2026). If you want something lighter, the Alpine-based 1.1 "Nebula" is still available.</p>
 
 <div class="tablo">
 <table>
   <tr><th>file</th><th>size</th><th>what</th></tr>
   <tr>
+    <td><a href="https://github.com/1260120047-eng/aether/releases/download/2.0/aether-2.0-orion.iso">aether-2.0-orion.iso</a>
+      <span class="ozet">sha256: a4a47bf7ab5cbe0e055311063aa3dce0987a1a5adf8c45fd7d40d3236d4ca6df</span></td>
+    <td class="boy">798 MB</td>
+    <td><b>2.0</b>, the operating system, x86_64, BIOS + UEFI</td>
+  </tr>
+  <tr>
     <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/aether-1.1-nebula.iso">aether-1.1-nebula.iso</a>
       <span class="ozet">sha256: b7f82d963c78a9e3547463438df34c16fb24ee85f16842e20599a84706650dfa</span></td>
     <td class="boy">485 MB</td>
-    <td>the operating system, x86_64, BIOS + UEFI</td>
+    <td>1.1, Alpine-based, lighter; no app store</td>
   </tr>
   <tr>
     <td><a href="https://github.com/1260120047-eng/aether/releases/download/1.1/Eclipse-Windows.zip">Eclipse-Windows.zip</a>
@@ -132,45 +138,47 @@ pre { background: var(--kod); padding: 10px 12px; overflow-x: auto; font-size: 1
 </div>
 
 <p>To check that the download isn't corrupted:</p>
-<pre>sha256sum aether-1.1-nebula.iso                    # Linux
-certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
+<pre>sha256sum aether-2.0-orion.iso                    # Linux
+certutil -hashfile aether-2.0-orion.iso SHA256    # Windows</pre>
 
-<p>Aether is open source. All the code is at <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> under the GPL-3.0 license, along with instructions for building it.</p>
+<p>Aether is open source. All the code is at <a href="https://github.com/1260120047-eng/aether-os">github.com/1260120047-eng/aether-os</a> under the GPL-3.0 license, along with instructions for building it. The 1.1 code is on the <a href="https://github.com/1260120047-eng/aether-os/tree/1.1">1.1 branch</a>.</p>
 
 <p class="soluk"><small>All files are on the <a href="https://github.com/1260120047-eng/aether/releases">GitHub releases</a> page.</small></p>
 
 <h2>What's inside</h2>
 
 <ul>
-  <li>Linux 6.12 LTS kernel on an Alpine 3.22 base</li>
-  <li>Yörünge, a window manager I wrote myself, with a taskbar at the bottom and light and dark themes (switch instantly in Settings)</li>
-  <li>Wi-Fi, sound and notifications. Settings also has a Drivers page that detects your hardware and installs missing firmware in one click</li>
-  <li>An installer I wrote myself: language, keyboard, user, disk</li>
+  <li>Arch Linux base with a current Linux kernel. Anything in the Arch repositories can be installed with <code>sudo pacman -S</code></li>
+  <li><b>App Store</b>: the Arch repositories and Flathub in one place; Firefox, Discord, Steam, Prism Launcher, LibreOffice, OBS... in one click</li>
+  <li><b>Aether Files</b>: my own file manager, with copy progress, a trash can and drag and drop</li>
+  <li><b>Task Manager</b> (Ctrl+Shift+Esc): processes plus CPU, memory, disk and network graphs</li>
+  <li><b>Game Mode</b>: Steam and the graphics driver in one click, and a performance mode</li>
+  <li>Yörünge, a window manager I wrote myself: taskbar, desktop icons, Windows-style right-click menus, light and dark themes</li>
+  <li>An installer I wrote myself: language, keyboard, user, disk. It can also install alongside Windows</li>
+  <li>Wi-Fi, sound, notifications, and a Drivers page in Settings</li>
   <li>Eclipse: my own WebKit-based browser, with tabs, bookmarks, history, private windows and an ad blocker</li>
-  <li>My own terminal (with tabs), file manager, text editor, image viewer, calculator</li>
-  <li>Minesweeper, a starfield screensaver, a lock screen, 9 wallpapers</li>
-  <li><code>gcc</code>, <code>g++</code> and <code>make</code> come preinstalled; SDL2/OpenGL development packages can be added from Settings</li>
-  <li><code>aether-info</code> and <code>aether-guncelle</code> (update) in the terminal</li>
+  <li>My own terminal (with tabs), text editor, image viewer, calculator, Minesweeper, a starfield screensaver</li>
+  <li>3D acceleration in virtual machines (VirtualBox, VMware, QEMU), and the resolution follows the window size</li>
+  <li><code>gcc</code> and <code>make</code> come preinstalled. <code>aether-info</code> and <code>aether-guncelle</code> (update) in the terminal</li>
 </ul>
 
-<p>The music player, system sounds and window animations are optional add-ons, so they don't bloat the ISO.</p>
 
 <div class="resimler">
   <figure>
+    <a href="../img/magaza.webp"><img src="../img/magaza.webp" width="1280" height="800" alt="App Store" loading="lazy"></a>
+    <figcaption>App Store</figcaption>
+  </figure>
+  <figure>
+    <a href="../img/gorev.webp"><img src="../img/gorev.webp" width="1280" height="800" alt="Task Manager" loading="lazy"></a>
+    <figcaption>Task Manager</figcaption>
+  </figure>
+  <figure>
+    <a href="../img/sagtik.webp"><img src="../img/sagtik.webp" width="1280" height="800" alt="Desktop right-click menu" loading="lazy"></a>
+    <figcaption>Right-clicking the desktop</figcaption>
+  </figure>
+  <figure>
     <a href="../img/eclipse.webp"><img src="../img/eclipse.webp" width="1102" height="750" alt="Eclipse browser" loading="lazy"></a>
     <figcaption>Eclipse's home page</figcaption>
-  </figure>
-  <figure>
-    <a href="../img/kurulum.webp"><img src="../img/kurulum.webp" width="1280" height="800" alt="Installer" loading="lazy"></a>
-    <figcaption>The installer, account step</figcaption>
-  </figure>
-  <figure>
-    <a href="../img/koyu-tema.webp"><img src="../img/koyu-tema.webp" width="1280" height="800" alt="Dark theme" loading="lazy"></a>
-    <figcaption>Dark theme and Settings</figcaption>
-  </figure>
-  <figure>
-    <a href="../img/grub.webp"><img src="../img/grub.webp" width="800" height="600" alt="Boot menu" loading="lazy"></a>
-    <figcaption>Boot menu</figcaption>
   </figure>
 </div>
 <p class="soluk"><small>The screenshots show the Turkish interface.</small></p>
@@ -180,19 +188,21 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 <p>I've tested it in VirtualBox and QEMU, where it works fine. I haven't tried it on a real computer yet (see below).</p>
 
 <ol>
-  <li>Create a new VirtualBox machine. Type: Linux, version: Other Linux (64-bit).</li>
-  <li>Give it at least 2 GB of RAM and a 10 GB disk.</li>
+  <li>Create a new VirtualBox machine. Type: Linux, version: Arch Linux (64-bit).</li>
+  <li>Give it at least 2 GB of RAM (3 GB is more comfortable) and a 10 GB disk.</li>
+  <li>Optionally, in Settings → Display, set the graphics controller to <b>VMSVGA</b>, tick <b>Enable 3D Acceleration</b> and raise video memory to 128 MB.</li>
   <li>In Settings → Storage, attach the ISO to the CD drive and start the machine.</li>
-  <li>In the boot menu, choose <b>English</b>. It logs into a live session with no password. Try it as long as you like, then click <b>Install to Disk</b> in the welcome window (or <b>Install Aether</b> in the menu).</li>
+  <li>In the boot menu, choose <b>English</b>. It logs into a live session with no password. Try it as long as you like, then click <b>Install to Disk</b> in the welcome window (or the install icon on the desktop).</li>
   <li>When the install finishes, remove the ISO, restart and log in with your own account.</li>
 </ol>
 
-<p>The system no longer waits to be copied into RAM; the copy runs in the background. In QEMU, boot went from 2.5 minutes to 70 seconds.</p>
+<p>To install alongside Windows on a real computer: back up your important files first, turn off Fast Startup and BitLocker in Windows, and turn off Secure Boot in your BIOS/UEFI settings. Then choose to install alongside Windows in the installer and pick how much space Aether gets; at boot, a menu lets you choose between Aether and Windows.</p>
 
 <h2 id="issues">Known issues</h2>
 
 <ul>
-  <li>Not tested on real hardware. Wi-Fi and sound support arrived in 1.1, but I could only try them in a virtual machine. If you try it, I'd love to hear how it went.</li>
+  <li>Not tested on real hardware; I could only try it in virtual machines. If you try it, I'd love to hear how it went.</li>
+  <li>Secure Boot isn't supported, so you need to turn it off.</li>
   <li>If the screen stays black, choose <b>Safe graphics</b> in the boot menu, or turn off 3D acceleration in VirtualBox.</li>
   <li>If VirtualBox shows a turtle icon at the bottom, Hyper-V is enabled on Windows and everything will be very slow.</li>
   <li>64-bit only.</li>
@@ -201,6 +211,8 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 <h2>Release notes</h2>
 
 <dl class="gunluk">
+  <dt>2.0 "Orion" <span class="soluk">· 9 October 2026</span></dt>
+  <dd>Moved to an Arch Linux base. App Store (Arch repositories and Flathub), Aether Files, Task Manager, Game Mode, desktop icons and right-click menus, installed apps in the start menu, installing alongside Windows, <code>sudo</code>, 3D acceleration in virtual machines, and windows that adapt when the resolution changes.</dd>
   <dt>1.1 "Nebula" <span class="soluk">· 8 October 2026</span></dt>
   <dd>Openbox is gone; my own window manager Yörünge and a taskbar replace it. Notifications, Wi-Fi settings, a Drivers page, an ad blocker in Eclipse, my own terminal, 6 new wallpapers. Boot is more than twice as fast.</dd>
   <dt>1.0 "Nebula" <span class="soluk">· 7 October 2026</span></dt>
@@ -236,8 +248,8 @@ certutil -hashfile aether-1.1-nebula.iso SHA256    # Windows</pre>
 </div>
 
 <div class="alt">
-  Aether is made by Hot Zot and is <a href="https://github.com/1260120047-eng/aether-os">open source</a> (GPL-3.0). Thanks to everyone who makes Alpine, Linux, GTK, WebKit, VTE and Mesa, and to AdAway for the ad list.<br>
-  Last updated: 8 October 2026
+  Aether is made by Hot Zot and is <a href="https://github.com/1260120047-eng/aether-os">open source</a> (GPL-3.0). Thanks to everyone who makes Arch Linux, Alpine, Linux, GTK, WebKit, VTE and Mesa, and to AdAway for the ad list.<br>
+  Last updated: 9 October 2026
 </div>
 
 </div>
