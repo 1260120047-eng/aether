@@ -1,116 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hot Zot</title>
-<meta name="description" content="Hot Zot'un kişisel sitesi: ben kimim ve yaptığım projeler.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%234b3cc4'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='17' fill='white' text-anchor='middle'%3EHZ%3C/text%3E%3C/svg%3E">
-<style>
-:root {
-  --bg: #fdfcf9; --yuzey: #ffffff; --fg: #1f1d26; --soluk: #66646f;
-  --cizgi: #e3e0d8; --vurgu: #4b3cc4; --vurgu-acik: #ece9fb;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #15141a; --yuzey: #1d1c24; --fg: #e6e4ee; --soluk: #9a98a6;
-    --cizgi: #33313d; --vurgu: #a99cff; --vurgu-acik: #28243f; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #15141a; --yuzey: #1d1c24; --fg: #e6e4ee; --soluk: #9a98a6;
-  --cizgi: #33313d; --vurgu: #a99cff; --vurgu-acik: #28243f; color-scheme: dark;
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0; background: var(--bg); color: var(--fg);
-  font: 17px/1.7 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-}
-a { color: var(--vurgu); text-underline-offset: 3px; }
-.sayfa { max-width: 680px; margin: 0 auto; padding: 64px 16px 48px; }
-
-header { margin-bottom: 56px; }
-.avatar {
-  width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--vurgu); color: var(--bg); font-weight: 700; font-size: 26px; margin-bottom: 20px;
-}
-h1 { font-size: 36px; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 6px; }
-.unvan { color: var(--soluk); font-size: 18px; margin: 0; }
-
-h2 { font-size: 21px; margin: 0 0 14px; }
-section { margin-bottom: 52px; }
-p { margin: 0 0 14px; }
-.soluk { color: var(--soluk); }
-
-.projeler { display: grid; gap: 14px; }
-.proje {
-  display: block; text-decoration: none; color: inherit;
-  background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: 10px; padding: 18px 20px;
-}
-a.proje:hover { border-color: var(--vurgu); }
-.proje h3 { font-size: 17px; margin: 0 0 4px; color: var(--vurgu); }
-.proje p { margin: 0; color: var(--soluk); font-size: 15.5px; }
-.bos { border-style: dashed; text-align: center; color: var(--soluk); font-size: 15.5px; }
-
-.baglantilar { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
-.baglantilar a {
-  display: inline-block; text-decoration: none; font-size: 15.5px; font-weight: 600;
-  padding: 8px 16px; border-radius: 8px; background: var(--vurgu-acik);
-}
-
-footer { border-top: 1px solid var(--cizgi); padding-top: 20px; color: var(--soluk); font-size: 14px; }
-
-@media (max-width: 560px) {
-  .sayfa { padding-top: 40px; }
-  h1 { font-size: 30px; }
-}
-</style>
 </head>
 <body>
-<div class="sayfa">
 
-<header>
-  <div class="avatar" aria-hidden="true">HZ</div>
-  <h1>Hot Zot</h1>
-  <p class="unvan">Programcı · kendi araçlarını sıfırdan yapmayı seven biri</p>
-</header>
+<h1>Hot Zot</h1>
 
-<section id="hakkimda">
-  <h2>Hakkımda</h2>
-  <p>Merhaba, ben Hot Zot. Program yazıyorum, en çok da C ile uğraşıyorum. Bir şeyin nasıl çalıştığını merak edince oturup kendim yapmayı seviyorum: masaüstü uygulamaları, bir web tarayıcısı, şimdi de kendi oyun motorum.</p>
-  <p>Bu sitede yaptığım projeleri paylaşıyorum. Bir şey dikkatini çekerse ya da bir fikrin varsa bana yazabilirsin.</p>
-</section>
+<p>Merhaba, ben Hot Zot. Program yazıyorum, en çok da C ile
+uğraşıyorum. Bir şeyin nasıl çalıştığını merak edince oturup kendim
+yapmayı seviyorum.</p>
 
-<section id="projeler">
-  <h2>Projelerim</h2>
-  <div class="projeler">
+<p>Bu sayfada yaptığım projeler var. Hepsi aşağıda listeleniyor.
+Bana ulaşmak için <a href="#iletisim">iletişim</a> kısmına bak.</p>
 
-    <!--
-      Yeni proje eklemek için aşağıdaki bloğu kopyala, yorum işaretlerini kaldır
-      ve kendi bilgilerinle doldur. Dosyaları "projeler" klasörüne yükleyebilirsin;
-      o zaman href="projeler/dosya-adi.zip" gibi yazman yeterli.
+<dl>
+<dt><a href="#hakkimda">Hakkımda</a></dt>
+<dd>Ben kimim, ne yapıyorum.</dd>
+<dt><a href="#projeler">Projelerim</a></dt>
+<dd>Yaptığım programlar ve dosyaları.</dd>
+<dt><a href="#iletisim">İletişim</a></dt>
+<dd>Bana nereden ulaşabilirsin.</dd>
+</dl>
 
-    <a class="proje" href="projeler/dosya-adi.zip">
-      <h3>Projenin adı</h3>
-      <p>Bir iki cümleyle ne işe yaradığı.</p>
-    </a>
-    -->
+<hr>
 
-    <div class="proje bos">Projeler yakında burada olacak.</div>
+<h2><a name="hakkimda" id="hakkimda">Hakkımda</a></h2>
 
-  </div>
-</section>
+<p>Kendi araçlarımı sıfırdan yapmayı seviyorum: masaüstü uygulamaları,
+bir web tarayıcısı, şimdi de kendi oyun motorum.</p>
 
-<section id="iletisim">
-  <h2>İletişim</h2>
-  <ul class="baglantilar">
-    <li><a href="https://github.com/1260120047-eng">GitHub</a></li>
-  </ul>
-</section>
+<hr>
 
-<footer>© 2026 Hot Zot</footer>
+<h2><a name="projeler" id="projeler">Projelerim</a></h2>
 
-</div>
+<!--
+  Yeni proje eklemek için aşağıdaki iki satırı kopyala, <dl> ile </dl>
+  arasına yapıştır ve doldur. Dosyaları "projeler" klasörüne yükle.
+
+  <dt><a href="projeler/dosya-adi.zip">Projenin adı</a></dt>
+  <dd>Bir iki cümleyle ne işe yaradığı.</dd>
+-->
+
+<dl>
+<dt>Yakında</dt>
+<dd>Projeler yakında burada olacak.</dd>
+</dl>
+
+<hr>
+
+<h2><a name="iletisim" id="iletisim">İletişim</a></h2>
+
+<p><a href="https://github.com/1260120047-eng">GitHub</a></p>
+
+<hr>
+
+<address>Hot Zot, 2026</address>
+
 </body>
 </html>

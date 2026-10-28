@@ -2,9 +2,10 @@
 
 Kişisel sitem: https://aether-os.dev
 
-Sade bir HTML sitesi; tek sayfa (`index.html`), başka bir şeye gerek yok.
+Eski usul, düz bir HTML sayfası (`index.html`). CSS yok, JavaScript yok.
 
 ## Proje eklemek
 1. Dosyaları `projeler/` klasörüne yükle.
-2. `index.html` içinde "Projelerim" bölümündeki örnek bloğu kopyala, yorum işaretlerini (`<!--` ve `-->`) kaldır ve doldur.
-3. İlk projeni ekleyince "Projeler yakında burada olacak." satırını sil.
+2. `index.html` içinde "Projelerim" başlığının altındaki yorumda örnek iki satır var
+   (`<dt>` ve `<dd>`). Onları kopyala, `<dl>` ile `</dl>` arasına yapıştır ve doldur.
+3. İlk projeni ekleyince "Yakında" satırlarını sil.
